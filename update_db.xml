@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="update_db" basedir="." default="updateDB">
+	<property name="jdbc.driver" value="com.mysql.jdbc.Driver"></property>
+	<property name="jdbc.url" value="jdbc:mysql://localhost:3306/project?useUnicode=true&amp;characterEncoding=UTF-8" />
+	<property name="jdbc.userid" value="root"/>
+	<property name="jdbc.password" value="123456"/>
+	<property name="sqlclasspath" value="./WebRoot/Web-INF/lib/mysql-connector-java-5.1.21-bin.jar"/>
+	<!-- 创建数据库结构 -->
+		<target name="updateDB">
+			<taskdef resource="sqltask.properties" classpath="./docs/ant/sqltask.jar"/>
+			<updatedb 
+				driver="${jdbc.driver}" 
+				url="${jdbc.url}" 
+				userid="${jdbc.userid}" 
+				password="${jdbc.password}" 
+				autoCommit="true"   keepformat="true" 
+				querytasks="select updateTaskName from updateTableInfo"
+				queryfield="updateTaskName"
+				inserttask="insert into updateTableInfo(updateTaskName,updateTaskTime) values(?,now())"
+				src="./docs/updateDB.jsql">
+				<classpath path="${sqlclasspath}"/>
+			</updatedb>
+			<echo>updateDB successfully</echo>
+		</target>
+</project>

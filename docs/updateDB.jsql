@@ -1,0 +1,5 @@
+
+-- test
+$BeginTask  test
+ UPDATE `project`.`userinfo` SET `upassword`='1111' WHERE `userid`='1';$go
+$EndTask test

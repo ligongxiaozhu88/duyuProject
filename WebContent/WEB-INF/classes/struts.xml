@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+ 	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+	"http://struts.apache.org/dtds/struts-2.0.dtd" >
+	<struts>
+		<include file="struts-default.xml"/>
+		<package name="dy-default" extends="json-default">
+			<!--返回类型为json串时，用includeProperties时 可以直接包含父类中的属性-->
+			<result-types>
+				<result-type name="json" class="org.apache.struts2.json.JSONResult">
+					<param name="ignoreHierarchy">false</param>					
+				</result-type>
+			</result-types>
+			<!-- 全局配置 -->
+			<global-results>
+				<result name="index">/index.jsp</result>
+				<result name="noLogin">/WEB-INF/pages/login.jsp</result>
+			</global-results>
+			<action name="index" class="com.duyu.action.LoginAction" method="index">
+	         	<result name="admin">/WEB-INF/pages/work/admin/frame.jsp</result>
+	         	<result name="login">/WEB-INF/pages/work/business/home.jsp</result>
+	        </action>
+	        <action name="exportAsExcel" class="com.duyu.action.LoginAction" method="exportAsExcel">
+	         	<result type="json">
+	         		<param name="includeProperties">success,message</param>
+	         	</result>
+	        </action>
+			 <action name="login" class="com.duyu.action.LoginAction" method="login">
+	         	<result type="json">
+	         		<param name="includeProperties">success,message</param>
+	         	</result>
+	        </action>
+		</package>
+		<!--用户管理
+		<package name="dy-default" extends="struts-default,jfreechart-default"></package>
+		
+		<include file="struts/struts-userManage"/>-->
+	</struts>

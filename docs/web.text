@@ -1,0 +1,52 @@
+<!--中文转码-->
+	<!--
+
+		<filter> <filter-name>Spring character encoding filter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param> <param-name>encoding</param-name>
+		<param-value>GB2312</param-value> </init-param> </filter>
+
+
+		<!--Hibernate与延迟加载
+	-->
+	<!--
+
+
+		<filter> <filter-name>hibernateFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		</filter> <!-- 配置过滤器监听路径
+	-->
+	<!--
+
+
+		<filter-mapping> <filter-name>Spring character encoding
+		filter</filter-name> <url-pattern>/*</url-pattern> </filter-mapping>
+
+		<filter-mapping> <filter-name>hibernateFilter</filter-name>
+		<url-pattern>/*</url-pattern> </filter-mapping> <!-- Struts中央控制器
+	-->
+	<!--
+
+
+		<servlet> <servlet-name>action</servlet-name> <servlet-class>
+		org.apache.struts.action.ActionServlet </servlet-class> <init-param>
+		<param-name>config</param-name>
+		<param-value>/WEB-INF/config/struts-config.xml</param-value>
+		</init-param> <init-param> <param-name>debug</param-name>
+		<param-value>3</param-value> </init-param> <init-param>
+		<param-name>detail</param-name> <param-value>3</param-value>
+		</init-param> <load-on-startup>0</load-on-startup> </servlet>
+		<servlet-mapping> <servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern> </servlet-mapping> <!--标签
+	-->
+	<!--
+
+
+		<taglib> <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/struts-bean.tld</taglib-location>
+		</taglib> <taglib> <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/struts-html.tld</taglib-location>
+		</taglib> <taglib> <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/struts-logic.tld</taglib-location>
+		</taglib>
+	-->

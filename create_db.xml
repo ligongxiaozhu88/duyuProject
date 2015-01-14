@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="create_db" basedir="." default="init_db">
+	<property name="jdbc.driver" value="com.mysql.jdbc.Driver"></property>
+	<property name="jdbc.url" value="jdbc:mysql://localhost:3306/mysql?useUnicode=true&amp;characterEncoding=UTF-8" />
+	<property name="jdbc.userid" value="root"/>
+	<property name="jdbc.password" value="123456"/>
+	<property name="sqlclasspath" value="./WebRoot/Web-INF/lib/mysql-connector-java-5.1.21-bin.jar"/>
+	<!-- 创建数据库结构 -->
+		<target name="create_db">
+			<sql driver="${jdbc.driver}" 
+				url="${jdbc.url}" 
+				userid="${jdbc.userid}" 
+				password="${jdbc.password}" 
+				autoCommit="true"  onerror="continue" keepformat="true" encoding="utf-8" delimiter="go" delimitertype="row">
+				<classpath path="${sqlclasspath}"/>
+				<transaction src="./docs/createMysqlData.sql"/>
+			></sql>
+		</target>
+	<!-- 插入基本数据-->
+		<target name="init_db" depends="create_db">
+			<sql driver="${jdbc.driver}" 
+				url="${jdbc.url}" 
+				userid="${jdbc.userid}" 
+				password="${jdbc.password}" 
+				autoCommit="true"  onerror="continue" keepformat="true" encoding="utf-8" delimiter="go" delimitertype="row">
+				<classpath path="${sqlclasspath}"/>
+				<transaction src="./docs/initMysqlData.sql"/>
+			></sql>
+		</target>
+</project>
